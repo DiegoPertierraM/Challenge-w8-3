@@ -1,33 +1,9 @@
-# Week 6 - Challenge 5
+# Week 3 - Images (1)
 
-## API REST Canciones
+Completar algún Challenge anterior (e.g. red social, mascotas) añadiendo la posibilidad de subir imágenes.
 
-Crea una API REST que se conecte a un fichero JSON con una sola propiedad de tipo array, donde almacenarán objetos de canciones.
-La API REST tendrá los siguientes endpoints:
+- Añadir en el registro una imagen del usuario, incorporándola al backend mediante Multer
+- Añadir un front con Angular para subir la imagen y mostrarla en el perfil del usuario
 
-[GET] /songs -> devuelve el array de cosas que ya sé
-
-[GET] /songs/:idSong -> devuelve una cosa que ya sé
-
-[DELETE] /songs/:idSong -> borra una cosa que ya sé
-
-[POST] /songs -> crea una cosa que ya sé (la recibe en el body)
-
-[PATCH] /songs/:id -> modifica una cosa que ya sé (la recibe en el body)
-
-Usamos express con las capas:
-
-- app
-- routers
-- controllers
-- model (entities)
-- repositories
-
-AÑADIMOS un front con ANGULAR testado
-
-- Lista de 'songs'
-- Añadir 'song'
-- Borrar 'song'
-- Editar 'song'
-
-- Página de detalle
+- Completar las funcionalidades pendientes tanto en back como en front
+- Testar al 100% tanto en back como en front
