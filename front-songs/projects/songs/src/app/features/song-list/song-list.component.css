@@ -1,0 +1,20 @@
+.song-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-block-start: 4rem;
+}
+
+li {
+  position: relative;
+}
+
+i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
+  cursor: pointer;
+}

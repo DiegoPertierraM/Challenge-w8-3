@@ -1,0 +1,14 @@
+{
+  "name": "challenge-w8-3",
+  "version": "1.0.0",
+  "description": "## API REST Canciones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diego",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

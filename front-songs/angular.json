@@ -1,0 +1,99 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "songs": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/songs",
+      "sourceRoot": "projects/songs/src",
+      "prefix": "isdi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/songs",
+            "index": "projects/songs/src/index.html",
+            "browser": "projects/songs/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "projects/songs/tsconfig.app.json",
+            "assets": [
+              "projects/songs/src/favicon.svg",
+              "projects/songs/src/assets"
+            ],
+            "styles": ["projects/songs/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "songs:build:production"
+            },
+            "development": {
+              "buildTarget": "songs:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "songs:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "projects/songs/tsconfig.spec.json",
+            "assets": [
+              "projects/songs/src/favicon.ico",
+              "projects/songs/src/assets"
+            ],
+            "styles": ["projects/songs/src/styles.css"],
+            "scripts": [],
+            "karmaConfig": "projects/songs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/songs/**/*.ts",
+              "projects/songs/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "schematicCollections": ["@angular-eslint/schematics"]
+  }
+}
