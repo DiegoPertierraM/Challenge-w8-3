@@ -1,0 +1,29 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { UserLoginDto } from '../models/user.model';
+import { environment } from '../../environments/environment.development';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RepoUsersService {
+  httpClient = inject(HttpClient);
+  url = environment.apiUrl + '/users';
+
+  login(_data: UserLoginDto) {
+    const data = {
+      name: _data.username,
+      password: _data.password,
+    };
+    return this.httpClient.post<{ token: string }>(this.url + '/login', data);
+  }
+
+  getById(id: string) {
+    return this.httpClient.get(this.url + '/' + id);
+  }
+
+  create(data: FormData) {
+    const url = this.url + '/register';
+    return this.httpClient.post(url, data);
+  }
+}

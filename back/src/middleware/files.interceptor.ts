@@ -1,6 +1,8 @@
 import { type NextFunction, type Request, type Response } from 'express';
+import { v2 } from 'cloudinary';
 import createDebug from 'debug';
 import multer from 'multer';
+import { HttpError } from './errors.middleware';
 
 const debug = createDebug('W7E:files:interceptor');
 
@@ -26,4 +28,32 @@ export class FilesInterceptor {
       req.body = { ...previousBody, ...req.body } as unknown;
     };
   }
+
+  //
+  //  async cloudinaryUpload(req: Request, res: Response, next: NextFunction) {
+  //   const options = {
+  //     folder: 'bc2021_1',
+  //     // eslint-disable-next-line @typescript-eslint/naming-convention
+  //     use_filename: true,
+  //     // eslint-disable-next-line @typescript-eslint/naming-convention
+  //     unique_filename: false,
+  //     overwrite: true,
+  //   };
+
+  //   if (!req.file) {
+  //     next(new HttpError(400, 'Bad Request', 'No file uploaded'));
+  //     return;
+  //   }
+
+  //   const finalPath = req.file.destination + '/' + req.file.filename;
+
+  //   try {
+  //     const result = await v2.uploader.upload(finalPath, options);
+  //     console.log(result);
+  //   } catch (error) {
+  //     next(
+  //       new HttpError(500, 'Internal server error', (error as Error).message)
+  //     );
+  //   }
+  // }
 }

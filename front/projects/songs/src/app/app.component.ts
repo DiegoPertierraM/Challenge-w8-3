@@ -1,28 +1,24 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { StateService } from './core/services/state.service';
-import { Song } from './core/services/model/song';
-import { SongListComponent } from './features/song-list/song-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { StateService } from './services/state.service';
 
 @Component({
   selector: 'isdi-root',
   standalone: true,
-  imports: [RouterOutlet, SongListComponent],
-  template: `
-    <h1>SONGS LIST:</h1>
-    <isdi-song-list [songs]="songs" />
-  `,
-  styleUrl: './app.component.css',
+  imports: [RouterOutlet, HeaderComponent],
+  template: ` <isdi-header />
+    <router-outlet />`,
+  styles: ``,
 })
-export class AppComponent implements OnInit {
-  songs: Song[] = [];
+export class AppComponent {
+  stateService = inject(StateService);
 
-  private stateSrv = inject(StateService);
-
-  ngOnInit(): void {
-    this.stateSrv.getData().subscribe((data) => {
-      this.songs = data;
-      console.log(data);
-    });
+  constructor() {
+    const stringToken = localStorage.getItem('week7.ng');
+    if (stringToken) {
+      const { token } = JSON.parse(stringToken);
+      this.stateService.setLogin(token);
+    }
   }
 }

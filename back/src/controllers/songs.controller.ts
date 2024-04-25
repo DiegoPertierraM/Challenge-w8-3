@@ -20,6 +20,7 @@ export class SongsController extends BaseController<Song, SongCreateDto> {
 
   async create(req: Request, res: Response, next: NextFunction) {
     debug('Creating song');
+
     req.body.authorId = (req.body.payload as Payload).id;
 
     const { payload, ...rest } = req.body as SongCreateDto & {

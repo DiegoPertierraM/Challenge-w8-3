@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-extraneous-class */
-import { hash, compare } from 'bcrypt';
+import { compare, hash } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export type Payload = {
@@ -10,7 +10,7 @@ export type Payload = {
 export class Auth {
   static secret = process.env.SECRET_JWT;
   static async hash(value: string) {
-    return hash(value, 10);
+    return await hash(value, 10);
   }
 
   static async compare(value: string, hash: string) {

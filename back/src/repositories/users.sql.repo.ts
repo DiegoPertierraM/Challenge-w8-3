@@ -46,7 +46,6 @@ export class UsersSqlRepo implements WithLoginRepo<User, UserCreateDto> {
   }
 
   async searchForLogin(key: 'email' | 'name', value: string) {
-
     if (!['email', 'name'].includes(key)) {
       throw new HttpError(404, 'Not Found', 'Invalid query parameters');
     }
@@ -73,7 +72,8 @@ export class UsersSqlRepo implements WithLoginRepo<User, UserCreateDto> {
 
   async create(data: UserCreateDto) {
     const { birthDateString, ...rest } = data;
-    const newUser = this.prisma.user.create({
+    console.log(data);
+    const newUser = await this.prisma.user.create({
       data: {
         role: 'user',
         birthDate: new Date(birthDateString),
