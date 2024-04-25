@@ -51,6 +51,8 @@ export class UsersController extends BaseController<User, UserCreateDto> {
       }
 
       if (!(await Auth.compare(password, user.password!))) {
+        console.log(password);
+        console.log(user.password);
         next(error);
         return;
       }
@@ -78,7 +80,8 @@ export class UsersController extends BaseController<User, UserCreateDto> {
       return;
     }
 
-    req.body.password = await Auth.hash(req.body.password as string);
+    const psw = await Auth.hash(req.body.password as string);
+    req.body.password = psw;
 
     req.body.avatar = req.file ? req.file.filename : 'sample.jpg';
 

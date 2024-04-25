@@ -12,6 +12,8 @@ export class FilesRouter {
     this.router.post(
       '/',
       interceptor.singleFile('avatar').bind(interceptor),
+      //
+      // interceptor.cloudinaryUpload.bind(interceptor),
       controller.fileHandler.bind(controller)
     );
   }
